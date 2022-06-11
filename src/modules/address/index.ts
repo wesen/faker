@@ -450,10 +450,10 @@ export class Address {
     coordinate?: [latitude: number, longitude: number],
     radius: number = 10,
     isMetric: boolean = false
-  ): [latitude: string, longitude: string] {
+  ): [latitude: number, longitude: number] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.latitude(), this.longitude()];
+      return [parseFloat(this.latitude()), parseFloat(this.longitude())];
     }
 
     const angleRadians = this.faker.datatype.float({
@@ -493,7 +493,7 @@ export class Address {
     // Box longitude [-180°, 180°]
     newCoordinate[1] = (((newCoordinate[1] % 360) + 540) % 360) - 180;
 
-    return [newCoordinate[0].toFixed(4), newCoordinate[1].toFixed(4)];
+    return [newCoordinate[0], newCoordinate[1]];
   }
 
   /**
