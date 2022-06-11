@@ -441,9 +441,9 @@ export class Address {
    * @param isMetric If `true` assume the radius to be in kilometers. If `false` for miles. Defaults to `false`.
    *
    * @example
-   * faker.address.nearbyGPSCoordinate() // [ '33.8475', '-170.5953' ]
-   * faker.address.nearbyGPSCoordinate([33, -170]) // [ '33.0165', '-170.0636' ]
-   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ '37.9163', '-179.2408' ]
+   * faker.address.nearbyGPSCoordinate() // [ 33.8475, -170.5953 ]
+   * faker.address.nearbyGPSCoordinate([33, -170]) // [ 33.0165, -170.0636 ]
+   * faker.address.nearbyGPSCoordinate([33, -170], 1000, true) // [ 37.9163, -179.2408 ]
    */
   // TODO ST-DDT 2022-02-10: Allow coordinate parameter to be [string, string].
   nearbyGPSCoordinate(
