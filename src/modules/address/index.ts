@@ -328,17 +328,15 @@ export class Address {
    * @param precision The number of decimal points of precision for the latitude. Defaults to `4`.
    *
    * @example
-   * faker.address.latitude() // '-30.9501'
-   * faker.address.latitude(10, -10, 5) // '2.68452'
+   * faker.address.latitude() // -30.9501
+   * faker.address.latitude(10, -10, 5) // 2.68452
    */
-  latitude(max: number = 90, min: number = -90, precision: number = 4): string {
-    return this.faker.datatype
-      .number({
-        min,
-        max,
-        precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
-      })
-      .toFixed(precision);
+  latitude(max: number = 90, min: number = -90, precision: number = 4): number {
+    return this.faker.datatype.number({
+      min,
+      max,
+      precision: parseFloat(`${(0.0).toPrecision(precision)}1`),
+    });
   }
 
   /**
@@ -453,7 +451,7 @@ export class Address {
   ): [latitude: string, longitude: string] {
     // If there is no coordinate, the best we can do is return a random GPS coordinate.
     if (coordinate === undefined) {
-      return [this.latitude(), this.longitude()];
+      return [this.latitude().toFixed(4), this.longitude()];
     }
 
     const angleRadians = this.faker.datatype.float({
