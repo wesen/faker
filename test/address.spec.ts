@@ -271,11 +271,15 @@ describe('address', () => {
       });
 
       describe('longitude()', () => {
+        it('returns a number', () => {
+          const longitude = faker.address.longitude();
+
+          expect(longitude).toBeTypeOf('number');
+        });
+
         it('returns random longitude', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude();
-
-            expect(longitude).toBeTypeOf('string');
 
             const longitude_float = parseFloat(longitude);
 
@@ -288,7 +292,6 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(100, -30);
 
-            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 4 digits'
@@ -305,7 +308,6 @@ describe('address', () => {
           for (let i = 0; i < 100; i++) {
             const longitude = faker.address.longitude(undefined, undefined, 7);
 
-            expect(longitude).toBeTypeOf('string');
             expect(
               longitude.split('.')[1].length,
               'The precision of longitude should be 7 digits'
