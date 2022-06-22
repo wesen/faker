@@ -3,8 +3,6 @@ import { faker } from '../src';
 import { FakerError } from '../src/errors/faker-error';
 import { seededRuns } from './support/seededRuns';
 
-const NON_SEEDED_BASED_RUN = 5;
-
 const MOCK_ARRAY = Array.from(
   { length: 500 },
   (_, index) => `Test-${index + 1}`
@@ -61,68 +59,66 @@ describe('unique', () => {
   describe(`random seeded tests for seed ${JSON.stringify(
     faker.seed()
   )}`, () => {
-    for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-      describe('unique()', () => {
-        it('should be possible to call a function with no arguments and return a result', () => {
-          const result = faker.unique(faker.internet.email);
-          expect(result).toBeTypeOf('string');
-        });
-
-        it('should be possible to call a function with arguments and return a result', () => {
-          const result = faker.unique(faker.internet.email, [
-            'fName',
-            'lName',
-            'domain',
-          ]); // third argument is provider, or domain for email
-          expect(result).toMatch(/\@domain/);
-        });
-
-        it('should be possible to limit unique call by maxTime in ms', () => {
-          expect(() => {
-            faker.unique(faker.internet.protocol, [], {
-              maxTime: 1,
-              maxRetries: 9999,
-              exclude: ['https', 'http'],
-            });
-          }).toThrowError(
-            new FakerError(`Exceeded maxTime: 1 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.unique().`)
-          );
-        });
-
-        it('should be possible to limit unique call by maxRetries', () => {
-          expect(() => {
-            faker.unique(faker.internet.protocol, [], {
-              maxTime: 5000,
-              maxRetries: 5,
-              exclude: ['https', 'http'],
-            });
-          }).toThrowError(
-            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.unique().`)
-          );
-        });
-
-        it('should throw a FakerError instance on error', () => {
-          expect(() => {
-            faker.unique(faker.internet.protocol, [], {
-              maxTime: 5000,
-              maxRetries: 5,
-              exclude: ['https', 'http'],
-            });
-          }).toThrowError(
-            new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
-
-May not be able to generate any more unique values with current settings.
-Try adjusting maxTime or maxRetries parameters for faker.unique().`)
-          );
-        });
+    describe('unique()', () => {
+      it('should be possible to call a function with no arguments and return a result', () => {
+        const result = faker.unique(faker.internet.email);
+        expect(result).toBeTypeOf('string');
       });
-    }
+
+      it('should be possible to call a function with arguments and return a result', () => {
+        const result = faker.unique(faker.internet.email, [
+          'fName',
+          'lName',
+          'domain',
+        ]); // third argument is provider, or domain for email
+        expect(result).toMatch(/\@domain/);
+      });
+
+      it('should be possible to limit unique call by maxTime in ms', () => {
+        expect(() => {
+          faker.unique(faker.internet.protocol, [], {
+            maxTime: 1,
+            maxRetries: 9999,
+            exclude: ['https', 'http'],
+          });
+        }).toThrowError(
+          new FakerError(`Exceeded maxTime: 1 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+        );
+      });
+
+      it('should be possible to limit unique call by maxRetries', () => {
+        expect(() => {
+          faker.unique(faker.internet.protocol, [], {
+            maxTime: 5000,
+            maxRetries: 5,
+            exclude: ['https', 'http'],
+          });
+        }).toThrowError(
+          new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+        );
+      });
+
+      it('should throw a FakerError instance on error', () => {
+        expect(() => {
+          faker.unique(faker.internet.protocol, [], {
+            maxTime: 5000,
+            maxRetries: 5,
+            exclude: ['https', 'http'],
+          });
+        }).toThrowError(
+          new FakerError(`Exceeded maxRetries: 5 for uniqueness check.
+
+May not be able to generate any more unique values with current settings.
+Try adjusting maxTime or maxRetries parameters for faker.unique().`)
+        );
+      });
+    });
   });
 
   // This test can be only executed once, because the unique function has a global state.
