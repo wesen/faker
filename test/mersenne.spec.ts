@@ -11,8 +11,6 @@ const minMaxTestCases = [
 
 const functionNames = ['rand'];
 
-const NON_SEEDED_BASED_RUN = 25;
-
 describe('mersenne twister', () => {
   let mersenne: Mersenne;
 
@@ -73,21 +71,19 @@ describe('mersenne twister', () => {
         }
       });
 
-      for (let i = 1; i <= NON_SEEDED_BASED_RUN; i++) {
-        describe('rand', () => {
-          it('should return a random number without given min / max arguments', () => {
-            const randomNumber = mersenne.rand();
-            expect(randomNumber).toBeTypeOf('number');
-          });
-
-          it('should return random number from interval [min, max)', () => {
-            const actual = mersenne.rand(0, 2);
-
-            expect(actual).toBeGreaterThanOrEqual(0);
-            expect(actual).toBeLessThan(2);
-          });
+      describe('rand', () => {
+        it('should return a random number without given min / max arguments', () => {
+          const randomNumber = mersenne.rand();
+          expect(randomNumber).toBeTypeOf('number');
         });
-      }
+
+        it('should return random number from interval [min, max)', () => {
+          const actual = mersenne.rand(0, 2);
+
+          expect(actual).toBeGreaterThanOrEqual(0);
+          expect(actual).toBeLessThan(2);
+        });
+      });
     });
   }
 
