@@ -20,6 +20,7 @@ import { LoremModule } from './modules/lorem';
 import { MersenneModule } from './modules/mersenne';
 import { MusicModule } from './modules/music';
 import { NameModule } from './modules/name';
+import { NumberModule } from './modules/number';
 import { PhoneModule } from './modules/phone';
 import { RandomModule } from './modules/random';
 import { ScienceModule } from './modules/science';
@@ -101,6 +102,7 @@ export class Faker {
   readonly lorem: LoremModule = new LoremModule(this);
   readonly music: MusicModule = new MusicModule(this);
   readonly name: NameModule = new NameModule(this);
+  readonly number: NumberModule = new NumberModule(this);
   readonly phone: PhoneModule = new PhoneModule(this);
   readonly science: ScienceModule = new ScienceModule(this);
   readonly system: SystemModule = new SystemModule(this);

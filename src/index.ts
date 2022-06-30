@@ -57,6 +57,7 @@ export type { MersenneModule } from './modules/mersenne';
 export type { MusicModule } from './modules/music';
 export { Gender, Sex } from './modules/name';
 export type { GenderType, NameModule, SexType } from './modules/name';
+export type { NumberModule } from './modules/number';
 export type { PhoneModule } from './modules/phone';
 export type { RandomModule } from './modules/random';
 export type { ChemicalElement, ScienceModule, Unit } from './modules/science';
