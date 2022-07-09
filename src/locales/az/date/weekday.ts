@@ -1,23 +1,23 @@
 // source: http://unicode.org/cldr/trac/browser/tags/release-27/common/main/ru.xml#L1825
 export default {
+  abbr: ['BE', 'Ba', 'CA', 'Cü', 'ÇA', 'Çə', 'Şə'],
+  abbr_context: ['вс', 'вт', 'пн', 'пт', 'сб', 'ср', 'чт'],
   wide: [
-    'Bazar',
     'Bazar ertəsi',
-    'Çərşənbə axşamı',
-    'Çərşənbə',
+    'Bazar',
     'Cümə axşamı',
     'Cümə',
+    'Çərşənbə axşamı',
+    'Çərşənbə',
     'Şənbə',
   ],
   wide_context: [
     'воскресенье',
-    'понедельник',
     'вторник',
-    'среда',
-    'четверг',
+    'понедельник',
     'пятница',
+    'среда',
     'суббота',
+    'четверг',
   ],
-  abbr: ['Ba', 'BE', 'ÇA', 'Çə', 'CA', 'Cü', 'Şə'],
-  abbr_context: ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
 };
