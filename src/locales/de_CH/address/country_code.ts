@@ -1,1 +1,1 @@
-export default ['CH', 'CH', 'CH', 'DE', 'AT', 'US', 'LI', 'US', 'HK', 'VN'];
+export default ['AT', 'CH', 'CH', 'CH', 'DE', 'HK', 'LI', 'US', 'US', 'VN'];
