@@ -1,1 +1,1 @@
-export default ['visa', 'mastercard', 'americanexpress', 'discover'];
+export default ['americanexpress', 'discover', 'mastercard', 'visa'];

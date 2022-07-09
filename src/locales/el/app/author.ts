@@ -1,1 +1,1 @@
-export default ['{{name.name}}', '{{company.name}}'];
+export default ['{{company.name}}', '{{name.name}}'];
