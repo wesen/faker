@@ -381,7 +381,9 @@ export class HelpersModule {
     options: { probability?: number } = {}
   ): T | undefined {
     const { probability = 0.5 } = options;
-    if (this.faker.number.int({ min: 0, max: 100 }) / 100 < probability) {
+    if (
+      this.faker.number.float({ min: 0, max: 1, precision: 2 }) < probability
+    ) {
       return callback();
     }
     return undefined;
@@ -481,7 +483,7 @@ export class HelpersModule {
 
     while (i-- > min) {
       index = Math.floor(
-        (i + 1) * (this.faker.number.int({ min: 0, max: 100 }) / 100)
+        (i + 1) * this.faker.number.float({ min: 0, max: 1, precision: 2 })
       );
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
