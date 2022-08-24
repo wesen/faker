@@ -58,9 +58,9 @@ export class HelpersModule {
     let str = '';
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === symbol) {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '!') {
-        str += this.faker.datatype.number({ min: 2, max: 9 });
+        str += this.faker.number.int({ min: 2, max: 9 });
       } else {
         str += string.charAt(i);
       }
@@ -119,13 +119,13 @@ export class HelpersModule {
 
     for (let i = 0; i < string.length; i++) {
       if (string.charAt(i) === '#') {
-        str += this.faker.datatype.number(9);
+        str += this.faker.number.int(9);
       } else if (string.charAt(i) === '?') {
         str += this.arrayElement(alpha);
       } else if (string.charAt(i) === '*') {
         str += this.faker.datatype.boolean()
           ? this.arrayElement(alpha)
-          : this.faker.datatype.number(9);
+          : this.faker.number.int(9);
       } else {
         str += string.charAt(i);
       }
@@ -224,7 +224,7 @@ export class HelpersModule {
         max = min;
         min = tmp;
       }
-      repetitions = this.faker.datatype.number({ min: min, max: max });
+      repetitions = this.faker.number.int({ min: min, max: max });
       string =
         string.slice(0, token.index) +
         token[1].repeat(repetitions) +
@@ -256,7 +256,7 @@ export class HelpersModule {
       }
       string =
         string.slice(0, token.index) +
-        this.faker.datatype.number({ min: min, max: max }).toString() +
+        this.faker.number.int({ min: min, max: max }).toString() +
         string.slice(token.index + token[0].length);
       token = string.match(RANGE_REG);
     }
@@ -283,7 +283,7 @@ export class HelpersModule {
     }
 
     for (let i = o.length - 1; i > 0; --i) {
-      const j = this.faker.datatype.number(i);
+      const j = this.faker.number.int(i);
       const x = o[i];
       o[i] = o[j];
       o[j] = x;
@@ -336,7 +336,7 @@ export class HelpersModule {
    *
    * @example
    * faker.helpers.mustache('I found {{count}} instances of "{{word}}".', {
-   *   count: () => `${faker.datatype.number()}`,
+   *   count: () => `${faker.number.int()}`,
    *   word: "this word",
    * }) // 'I found 57591 instances of "this word".'
    *
@@ -436,9 +436,7 @@ export class HelpersModule {
     array: ReadonlyArray<T> = ['a', 'b', 'c'] as unknown as ReadonlyArray<T>
   ): T {
     const index =
-      array.length > 1
-        ? this.faker.datatype.number({ max: array.length - 1 })
-        : 0;
+      array.length > 1 ? this.faker.number.int({ max: array.length - 1 }) : 0;
 
     return array[index];
   }
@@ -468,7 +466,7 @@ export class HelpersModule {
       count =
         array.length === 0
           ? 0
-          : this.faker.datatype.number({ min: 1, max: array.length });
+          : this.faker.number.int({ min: 1, max: array.length });
     } else if (count > array.length) {
       count = array.length;
     } else if (count < 0) {
@@ -482,9 +480,7 @@ export class HelpersModule {
     let index: number;
 
     while (i-- > min) {
-      index = Math.floor(
-        (i + 1) * this.faker.number.float({ min: 0, max: 1, precision: 2 })
-      );
+      index = this.faker.number.int({ min: 0, max: i + 1 });
       temp = arrayCopy[index];
       arrayCopy[index] = arrayCopy[i];
       arrayCopy[i] = temp;
